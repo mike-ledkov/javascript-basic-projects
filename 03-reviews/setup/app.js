@@ -37,3 +37,82 @@ const reviews = [
       "Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ",
   },
 ];
+
+// Select items
+const img = document.getElementById("person-img");
+const author = document.getElementById("author");
+const job = document.getElementById("job");
+const info = document.getElementById("info");
+
+const prevBtn = document.querySelector(".prev-btn");
+const nextBtn = document.querySelector(".next-btn");
+const randomBtn = document.querySelector(".random-btn");
+
+// Set starting item
+let currItem = 0;
+
+// Setting up the default value for the random person
+let prevRnd = 0;
+
+// Load initial item
+window.addEventListener("DOMContentLoaded", loadPerson(currItem));
+
+// Function to show the selected person
+function loadPerson(number) {
+  const item = reviews[number];
+  author.textContent = item.name;
+  job.textContent = item.job;
+  img.src = item.img;
+  info.textContent = item.text;
+};
+
+// Select buttons
+prevBtn.addEventListener("click", changePerson);
+nextBtn.addEventListener("click", changePerson);
+randomBtn.addEventListener("click", changePerson);
+
+// function to process the click of a certain button
+function changePerson(item) {
+
+  // Assign the class list of a clicked button to a variable in
+  // order to select a correct button later on
+  let btn = item.currentTarget.classList;
+
+  // Assign the length of our (array - 1) to a var for convenience
+  let max = reviews.length - 1;
+
+  // Check what button is pressed
+  if (btn.contains("prev-btn")) {
+    currItem--;
+
+    // If we continue to click the _previous_ button when the FIRST
+    // array item is reached, go to the LAST item of the array
+    // (to make an illusion of the cycle)
+    if (currItem < 0) {
+      currItem = max;
+    }
+  } else if (btn.contains("next-btn")) {
+    currItem++;
+    // If we continue to click the _next_ button when the LAST
+    // array item is reached, go to the FIRST item of the array
+    // (to make an illusion of the cycle)
+    if (currItem > max) {
+      currItem = 0;
+    }
+  } else if (btn.contains("random-btn")) {
+    // Below is the cool function to prevent random numbers
+    // occur twice in a row.
+    // I've looked it up from the guy named Onder in the lection 107
+    // comments.
+    // We check if the previous random number equals to the current 
+    // number. If it is, then we generate the new random number
+    // (until it is not equal to the previous one).
+    while (prevRnd == currItem) {
+      currItem = Math.round(Math.random() * max);
+    }
+    // We update the value of the previous random number.
+    prevRnd = currItem;
+  }
+  // Show the selected person from an array
+  loadPerson(currItem);
+}

@@ -191,7 +191,6 @@ main {
   position: relative;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
   margin: 0 auto;
   margin-bottom: 1.5rem;
 }
@@ -201,7 +200,8 @@ main {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  position: relative;
+  z-index: 1;
+  position: absolute;
 }
 .img-container::after {
   font-family: "Font Awesome 5 Free";
@@ -218,6 +218,7 @@ main {
   transform: translateY(25%);
   background: var(--clr-primary-5);
   color: var(--clr-white);
+  z-index: 1;
 }
 .img-container::before {
   content: "";
@@ -228,6 +229,7 @@ main {
   top: -0.25rem;
   right: -0.5rem;
   border-radius: 50%;
+  z-index: 0;
 }
 #author {
   margin-bottom: 0.25rem;
