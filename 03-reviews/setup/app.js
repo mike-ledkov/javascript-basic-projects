@@ -55,11 +55,13 @@ let currItem = 0;
 let prevRnd = 0;
 
 // Load initial item
-window.addEventListener("DOMContentLoaded", loadPerson(currItem));
+window.addEventListener("DOMContentLoaded", function() {
+  loadPerson(currItem);
+});
 
 // Function to show the selected person
 function loadPerson(number) {
-  const item = reviews[number];
+  const item = reviews[currItem];
   author.textContent = item.name;
   job.textContent = item.job;
   img.src = item.img;
