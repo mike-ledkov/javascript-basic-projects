@@ -185,7 +185,7 @@ Sidebar
 
 .sidebar-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem 1.5rem;
 }
@@ -196,11 +196,11 @@ Sidebar
   color: var(--clr-primary-5);
   transition: var(--transition);
   cursor: pointer;
-  color: var(--clr-red-dark);
+  color: var(--clr-grey-10);
 }
 .close-btn:hover {
-  color: var(--clr-red-light);
-  transform: rotate(360deg);
+  color: var(--clr-black);
+  transform: rotate(180deg);
 }
 .logo {
   justify-self: center;
@@ -247,10 +247,11 @@ Sidebar
   row-gap: 1rem;
   box-shadow: var(--clr-red-dark);
   transition: var(--transition);
-  /* transform: translate(-100%); */
-}
-.show-sidebar {
   transform: translate(0);
+  visibility: visible;
+}
+.hide-sidebar {
+  transform: translate(-100%);
 }
 @media screen and (min-width: 676px) {
   .sidebar {
