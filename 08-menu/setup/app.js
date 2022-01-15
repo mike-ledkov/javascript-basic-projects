@@ -71,4 +71,105 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "steak dinner",
+    category: "dinner",
+    price: 29.99,
+    img: "./images/item-10.jpeg",
+    desc: `It's a steak. <br> One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.`
+  }
 ];
+
+const sectionCenter = document.querySelector(".section-center");
+const btnContainer = document.querySelector(".btn-container");
+//let htmlButtons = "";
+//const click = document.querySelector(".btn");
+
+// Create menu categories based on the menu (prev array)
+window.addEventListener("DOMContentLoaded", function() {
+  // Display initial menu
+  displayMenuItems(menu);
+
+  // Display category buttons
+  displayMenuButtons();
+});
+
+function displayMenuItems(menuItems) {
+  // Create a new array from an existing menu array
+  let menuArray = menuItems.map(function(item) {
+    let codeStructure = 
+    `<article class="menu-item ${item.category}">
+    <img src="${item.img}" alt="${item.title}" class="photo">
+    <div class="item-info">
+      <header>
+        <h4>${item.title}</h4>
+        <h4 class="price">$${item.price}</h4>
+      </header>
+      <p class="item-text">${item.desc}</p>
+    </div></article>`;
+    return codeStructure;
+  });
+
+  // Turn the array into a single string joined by
+  // new line separators (separators aren't required)
+  menuArray = menuArray.join("\n\n");
+
+  // Insert the string in our "section-center" <div>
+  // in the html
+  sectionCenter.innerHTML = menuArray;  
+}
+
+function displayMenuButtons() {
+  // Create an array of unique categories (from the menu array)
+  const categories = menu.reduce(function(prev, curr) {
+    //console.log(prev);
+    if (!prev.includes(curr.category)) {
+      prev.push(curr.category);
+    }
+    return prev;
+  }, ["all"]);
+  
+  // Create buttons for the categories
+  // -- Using forEach method (my initial dumb solution)
+  // categories.forEach(function(categoryItem) {
+  //   htmlButtons += `
+  //   <button class="filter-btn" type="button">${categoryItem}</button>`;
+  // });
+  // -- Using map method (John Smilga)
+  let buttonArray = categories.map(function(categoryItem) {
+    return `<button class="filter-btn" type="button">${categoryItem}</button>`;
+  });
+
+  // Turn array of buttons code into a string
+  let htmlButtons = buttonArray.join("\n");
+
+  // Insert buttons into HTML code
+  btnContainer.innerHTML = htmlButtons;
+  
+  // Select buttons ("btns" is now undefined if called
+  // from outside this event because generated dynamically)
+  const btns = btnContainer.querySelectorAll(".filter-btn");
+  
+  // Add event listener to each of the buttons 
+  // with the logic from the "filteredMenu" 
+  btns.forEach(function(item) {
+    item.addEventListener("click", filteredMenu);
+  });
+}
+
+// Filtering logic
+// Filter the menu to show only the selected category
+// This function is used as an event handler
+// for the categories buttons (see "btns" above).
+function filteredMenu(event) {
+  let activeCategory = event.currentTarget.innerText;
+  if (activeCategory.toLowerCase() !== "all") {
+    let filtered = menu.filter(function(menuItem) {
+      return menuItem.category === activeCategory.toLowerCase();
+    });
+    return displayMenuItems(filtered);    
+  } else { 
+    return displayMenuItems(menu);
+  }
+}
