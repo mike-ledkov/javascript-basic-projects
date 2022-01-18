@@ -9,7 +9,7 @@
 // const links = document.querySelector(".links");
 
 // navButton.addEventListener("click", function() {
-//     // links.classList.toggle("show-links");
+//     links.classList.toggle("show-links");
 // })
 
 // Short but unreadable way
