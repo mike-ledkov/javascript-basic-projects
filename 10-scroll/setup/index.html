@@ -13,7 +13,95 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>scroll project</h1>
+    <!-- <h1>scroll project</h1> -->
+    <!-- header  -->
+    <header id="home">
+      <!-- navbar -->
+      <nav id="nav">
+        <div class="nav-center">
+          <!-- nav header -->
+          <div class="nav-header">
+            <img src="./logo.svg" alt="logo" class="logo">
+            <button class="nav-toggle">
+              <span class="fas fa-bars"></span>
+            </button>
+          </div>
+          <!-- links -->
+          <div class="links-container">
+            <ul class="links">
+              <li>
+                <a href="#home" class="scroll-link">home</a>
+              </li>
+              <li>
+                <a href="#about" class="scroll-link">about</a>
+              </li>
+              <li>
+                <a href="#services" class="scroll-link">services</a>
+              </li>
+              <li>
+                <a href="#tours" class="scroll-link">tours</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- banner -->
+      <div class="banner">
+        <div class="container">
+          <h1>scroll project</h1>
+          <p>
+            In this project we learn how to
+            <ol>
+              <li>add a dynamically changing year 
+                  (for copyright or whatever;</li>
+              <li>dynamically calculate the height of the navbar depending
+                  on the number of links inside it;
+              </li>
+              <li>properly scroll to the preferred location on the page.</li>
+            </ol>
+          </p>
+          <a href="#tours" class="scroll-link btn btn-white">
+            explore tours
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- about -->
+    <section id="about" class="section">
+      <div class="title">
+        <h2><span>about us</span></h2>
+      </div>
+    </section>
+    
+    <!-- services -->
+    <section id="services" class="section">
+      <div class="title">
+        <h2><span>our services</span></h2>
+      </div>
+    </section>
+    
+    <!-- tours -->
+    <section id="tours" class="section">
+      <div class="title">
+        <h2><span>featured tours</span></h2>
+      </div>
+    </section>
+    
+    <!-- footer -->
+    <footer class="section">
+      <p>
+        copyright &copy; backroads travel tours company,
+        <span id="date"></span>.
+        All rights reserved.
+      </p>
+    </footer>
+
+    <!-- back to top button -->
+    <a href="#home" class="scroll-link top-link">
+      <span class="fas fa-arrow-up"></span>
+    </a>
+    
     <!-- javascript -->
     <script src="app.js"></script>
   </body>
