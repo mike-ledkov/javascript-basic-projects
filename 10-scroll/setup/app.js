@@ -94,8 +94,7 @@ function calculatePosition(element) {
   const navBarHeight = navBar.getBoundingClientRect().height;
   const containerHeight = linksContainer.getBoundingClientRect().height;
   const fixedNav = navBar.classList.contains("fixed-nav");
-  console.log(navBarHeight);
-
+  
   let position = element.offsetTop - navBarHeight;
   
   if(!fixedNav){
@@ -104,9 +103,13 @@ function calculatePosition(element) {
   
   // standard navBarHeight is around 82px.
   // When we open the navbar (on a narrow srceen), 
-  // the height becomes bigger.
+  // the height becomes bigger. So here we check: if the navBar
+  // is open? If yes, then we scroll a bit further to account
+  // for the height of the links container.
   if(navBarHeight > 82) {
-    position = position + containerHeight;
+    //console.log(navBarHeight);
+    //console.log(containerHeight);
+    position = position + navBarHeight;
   }
   return position;
 }
