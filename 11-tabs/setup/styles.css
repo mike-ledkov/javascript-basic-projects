@@ -73,8 +73,9 @@ body {
   line-height: 1.5;
   font-size: 0.875rem;
 }
-ul {
+ul li {
   list-style-type: none;
+  color: var(--clr-grey-5);
 }
 a {
   text-decoration: none;
