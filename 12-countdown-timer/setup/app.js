@@ -26,10 +26,10 @@ const giveaway = document.querySelector(".giveaway");
 const deadline = document.querySelector(".deadline");
 const deadlineItems = document.querySelectorAll(".deadline-format h4");
 
-let tempDate = new Date();
-let tempYear = tempDate.getFullYear();
-let tempMonth = tempDate.getMonth();
-let tempDay = tempDate.getDate();
+const tempDate = new Date();
+const tempYear = tempDate.getFullYear();
+const tempMonth = tempDate.getMonth();
+const tempDay = tempDate.getDate();
 
 // --- SET UP THE DEADLINE FOR THE GIVEAWAY ---
 
@@ -78,7 +78,6 @@ const futureTime = futureDate.getTime();
 function getRemainingTime(future) {
   const today = Date.now();
   const t = future - today;
-  //console.log(t);
   if (t < 0) {
     clearInterval(countdown);
     deadline.innerHTML = `<h4 class="expired">Sorry, this giveaway is over.</h4>`;
@@ -104,17 +103,16 @@ function getRemainingTime(future) {
   }
     
   deadlineItems.forEach(function(item, index) {
-    //let outputValues = getRemainingTime(futureTime);
     let output = format(values[index]);
-    //console.log(output);
     item.innerHTML = output;
   });
 
   return;
 }
 
-let countdown = setInterval(getRemainingTime, 1000, futureDate);
-//console.log(countdown);
-//getRemainingTime(futureDate);
+// We CAN invoke our function once in order
+// not to show hard-coded values from the
+// html document.
+getRemainingTime(futureDate);
 
-// countdown
+let countdown = setInterval(getRemainingTime, 1000, futureDate);
