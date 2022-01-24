@@ -47,7 +47,7 @@ Variables
   --ff-primary: "Roboto", sans-serif;
   --ff-secondary: "Open Sans", sans-serif;
   --transition: all 0.3s linear;
-  --spacing: 0.25rem;
+  --spacing: 0.1rem;
   --radius: 0.5rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -92,7 +92,7 @@ h2,
 h3,
 h4 {
   letter-spacing: var(--spacing);
-  text-transform: capitalize;
+  text-transform: none;
   line-height: 1.25;
   margin-bottom: 0.75rem;
   font-family: var(--ff-primary);
@@ -213,11 +213,12 @@ Countdown Timer
   background: var(--clr-grey-1);
   color: var(--clr-white);
   margin-right: 1rem;
-  width: 5rem;
-  height: 5rem;
+  width: 5.5rem;
+  height: 5.5rem;
   display: grid;
   place-items: center;
   text-align: center;
+  padding: 1rem 0;
 }
 .deadline-format span {
   display: block;
