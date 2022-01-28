@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", setupItems)
 
 
 // (3) ***** FUNCTIONS *****
-// <<<<< FUNCTION: Add item >>>>>
+// <<<<< Add item >>>>>
 function addItem(event) {
   event.preventDefault()
   const value = inputField.value
@@ -49,9 +49,9 @@ function addItem(event) {
   }
 }
 
-// <<<<< FUNCTION: Delete item >>>>>
+// <<<<< Delete item >>>>>
 function deleteItem(e) {
-  const element = e.currentTarget.parentElement.parentElement
+  const element = e.parentElement.parentElement
   const elementId = element.dataset.id
 
   // The other way to access item name:
@@ -65,18 +65,18 @@ function deleteItem(e) {
   inputField.focus()
 }
 
-// <<<<< FUNCTION: Edit item >>>>>
+// <<<<< Edit item >>>>>
 function editItem(e) {
-  const element = e.currentTarget.parentElement.parentElement
+  const element = e.parentElement.parentElement
   editID = element.dataset.id
   editFlag = true
-  editedItem = e.currentTarget.parentElement.previousElementSibling
+  editedItem = e.parentElement.previousElementSibling
   inputField.value = editedItem.innerHTML
   inputField.focus()
   submitBtn.textContent = "edit"
 }
 
-// <<<<< FUNCTION: Change visibility >>>>>
+// <<<<< Change visibility >>>>>
 function changeVisibility() {
   if (groceryList.children.length !== 0) {
     groceryList.style.visibility = "visible"
@@ -88,7 +88,7 @@ function changeVisibility() {
   }
 }
 
-// <<<<< FUNCTION: Display alert >>>>>
+// <<<<< Display alert >>>>>
 function displayAlert(text, status) {
   alert.textContent = text
   alert.classList.add(`alert-${status}`)
@@ -100,7 +100,7 @@ function displayAlert(text, status) {
   }, 2000)
 }
 
-// <<<<< FUNCTION: Clear items list >>>>>
+// <<<<< Clear items list >>>>>
 function clearItems() {
   groceryList.innerHTML = ""
   changeVisibility()
@@ -109,7 +109,7 @@ function clearItems() {
   localStorage.removeItem("List")
 }
 
-// <<<<< FUNCTION: Set back to default >>>>>
+// <<<<< Set back to default >>>>>
 function setBackToDefault() {
   inputField.value = ""
   inputField.focus()
@@ -120,7 +120,7 @@ function setBackToDefault() {
 
 // (4) ***** LOCAL STORAGE ***** 
 
-// <<<<< FUNCTION: Add to local storage >>>>>
+// <<<<< Add to local storage >>>>>
 function addToLocalStorage(id, value) {
   const grocery = {
     id: id,
@@ -131,12 +131,9 @@ function addToLocalStorage(id, value) {
   localStorage.setItem("List", JSON.stringify(list))
 }
 
-// <<<<< FUNCTION: Remove from local storage >>>>>
+// <<<<< Remove from local storage >>>>>
 function removeFromLocalStorage(id) {
   let list = getLocalStorage()
-
-  console.log(id)
-  console.log(list[0].id)
 
   list = list.filter(function(item) {
     if (item.id !== id) return item
@@ -144,7 +141,7 @@ function removeFromLocalStorage(id) {
   localStorage.setItem("List", JSON.stringify(list))
 }
 
-// <<<<< FUNCTION: Edit local storage >>>>>
+// <<<<< Edit local storage >>>>>
 function editLocalStorage(id, value) {
   let list = getLocalStorage()
   list = list.map(function(item) {
@@ -207,13 +204,30 @@ function createListItem(id, value) {
         </button>
       </div>`
     
-    // Create delete and edit buttons for the new item
-    const deleteBtn = newItem.querySelector(".delete-btn")
-    const editBtn = newItem.querySelector(".edit-btn")
-    deleteBtn.addEventListener("click", deleteItem)
-    editBtn.addEventListener("click", editItem)
+    // Activate delete and edit buttons for the new item
+    // const deleteBtn = newItem.querySelector(".delete-btn")
+    // const editBtn = newItem.querySelector(".edit-btn")
+    // deleteBtn.addEventListener("click", deleteItem)
+    // editBtn.addEventListener("click", editItem)
+    groceryList.addEventListener("click", activateBtns)
 
     // Now we need to add the article to our HTML list:
     // Append child
     groceryList.appendChild(newItem)
+}
+
+function activateBtns(e) {
+  const target = e.target
+  if (target.classList.contains("delete-btn")) {
+    deleteItem(target)
+  }
+  else if (target.classList.contains("fa-trash")) {
+    deleteItem(target.parentElement)
+  }
+  else if (target.classList.contains("edit-btn")) {
+    editItem(target)
+  }
+  else if (target.classList.contains("fa-edit")) {
+    editItem(target.parentElement)
+  }
 }
