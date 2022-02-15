@@ -271,6 +271,9 @@ Grocery List
   border-radius: var(--radius);
   text-transform: capitalize;
 }
+.grocery-item p {
+  max-width: 90%;
+}
 .grocery-item:hover {
   color: var(--clr-grey-5);
   background: var(--clr-grey-10);
