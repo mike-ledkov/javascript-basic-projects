@@ -49,7 +49,7 @@ Variables
   --spacing: 0.1rem;
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --dark-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
   --fixed-width: 620px;
 }
@@ -99,7 +99,8 @@ h3 {
   font-size: 1.25rem;
 }
 h4 {
-  font-size: 0.875rem;
+  font-style: italic;
+  font-size: 1.0rem;
 }
 p {
   margin-bottom: 1.25rem;
@@ -116,7 +117,7 @@ p {
     font-size: 1.75rem;
   }
   h4 {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   body {
     font-size: 1rem;
