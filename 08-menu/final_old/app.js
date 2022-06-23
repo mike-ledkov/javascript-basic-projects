@@ -131,15 +131,17 @@ function displayMenuButtons() {
   }, ["all"]);
   
   // Create buttons for the categories
-  // -- Using forEach method (my initial dumb solution)
-  // categories.forEach(function(categoryItem) {
-  //   htmlButtons += `
-  //   <button class="filter-btn" type="button">${categoryItem}</button>`;
-  // });
-  // -- Using map method (John Smilga)
+  /*
+  ! Using forEach method (my initial solution)
+  categories.forEach(function(categoryItem) {
+    htmlButtons += `
+    <button class="filter-btn" type="button">${categoryItem}</button>`;
+  });
+  ! Using map method (John Smilga)
   let buttonArray = categories.map(function(categoryItem) {
     return `<button class="filter-btn" type="button">${categoryItem}</button>`;
   });
+  */
 
   // Turn array of buttons code into a string
   let htmlButtons = buttonArray.join("\n");
